@@ -8,7 +8,7 @@ const reelCanvas = document.getElementById("reelCanvas");
 
 let photos = [];
 
-// Floating Hearts
+// Hearts
 setInterval(() => {
     const heart = document.createElement("div");
     heart.classList.add("heart");
@@ -26,7 +26,8 @@ async function startLove(){
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ 
             video: { 
-                facingMode: "user", // Front camera
+                // camera
+                facingMode: "user", 
                 width: { ideal: 640 },
                 height: { ideal: 480 }
             } 
@@ -51,7 +52,7 @@ async function startReelSequence() {
         await runCountdown(3);
         triggerFlash();
         captureFrame();
-        // 1 second pause to change poses
+        // pause
         await new Promise(res => setTimeout(res, 1000));
     }
     renderReel();
@@ -103,7 +104,7 @@ function renderReel() {
     ctx.fillStyle = "#111";
     ctx.fillRect(0, 0, reelCanvas.width, reelCanvas.height);
 
-    // Film Sprockets
+    // Film 
     ctx.fillStyle = "#333";
     for (let y = 10; y < reelCanvas.height; y += 30) {
         ctx.fillRect(10, y, 15, 15);
