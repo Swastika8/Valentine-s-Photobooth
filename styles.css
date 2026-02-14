@@ -1,0 +1,125 @@
+:root {
+    --primary-pink: #ff4d6d;
+    --dark-reel: #1a1a1a;
+}
+
+*{
+    margin:0; padding:0; box-sizing:border-box;
+    font-family:'Courier New', monospace;
+}
+
+body{
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: radial-gradient(circle at top, #ff9a9e, #fad0c4, #2d3436);
+    display:flex; justify-content:center; align-items:center;
+    color:white;
+}
+
+.heart{
+    position:absolute; bottom:-50px;
+    animation:floatUp 8s linear infinite;
+    opacity:0.7; z-index: 0;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(0) rotate(0deg); opacity:1;}
+    100%{transform:translateY(-110vh) rotate(360deg); opacity:0;}
+}
+
+#landing, #cameraPage { z-index: 10; text-align: center; width: 100%; }
+
+#landing h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{text-shadow:0 0 10px white, 0 0 20px var(--primary-pink);}
+    to{text-shadow:0 0 20px white, 0 0 40px crimson;}
+}
+
+.startBtn{
+    margin-top:20px; padding:15px 40px;
+    border:none; border-radius: 50px;
+    background: white; color: var(--primary-pink);
+    font-weight: bold; cursor:pointer;
+}
+
+#cameraPage { display:none; flex-direction:column; align-items:center; padding: 10px; }
+
+.camera-wrapper {
+    position: relative;
+    padding: 20px 25px; /* Added side padding for sprocket look */
+    background: var(--dark-reel);
+    border-radius: 10px;
+    width: 95%;
+    max-width: 450px;
+}
+
+/* Fix: Ensure video stays 4:3 and doesn't stretch */
+video {
+    width: 100%;
+    aspect-ratio: 4 / 3; 
+    object-fit: cover; /* This prevents the "squashed" look in preview */
+    background: #000;
+    display: block;
+    border: 2px solid #333;
+}
+
+.camera-wrapper::before, .camera-wrapper::after {
+    content: ""; position: absolute;
+    left: 5px; right: 5px; height: 100%; top: 0;
+    width: 15px;
+    background-image: radial-gradient(circle, #333 40%, transparent 45%);
+    background-size: 100% 30px;
+    z-index: 1;
+}
+.camera-wrapper::after { left: auto; right: 5px; }
+
+#timer {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 6rem; font-weight: bold;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+    display: none; z-index: 21;
+}
+
+#flash {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: white; opacity: 0; pointer-events: none; z-index: 20;
+}
+.flash-active { animation: flashAnim 0.4s ease-out; }
+@keyframes flashAnim { 0% { opacity: 1; } 100% { opacity: 0; } }
+
+.controls{
+    margin-top:20px; background: rgba(255, 255, 255, 0.1);
+    padding: 15px; border-radius: 15px;
+    backdrop-filter: blur(5px);
+    width: 95%; max-width: 450px;
+    display: flex; flex-direction: column; gap: 10px;
+}
+
+.control-row { display: flex; gap: 10px; width: 100%; }
+
+select, button{
+    padding: 10px; border: none; border-radius: 5px;
+    cursor: pointer; font-weight: bold; flex: 1;
+}
+
+button { background: var(--primary-pink); color: white; }
+
+#output-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+canvas {
+    border: 5px solid #000;
+    max-width: 90%; /* Prevents the strip from looking tiny on desktop */
+    height: auto !important;
+    display: none;
+}
