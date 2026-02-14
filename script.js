@@ -117,7 +117,7 @@ function renderReel() {
     ctx.fillStyle = "#ff4d6d";
     ctx.font = "bold 22px Courier New";
     ctx.textAlign = "center";
-    ctx.fillText("VALENTINE 2024 ❤️", reelCanvas.width/2, reelCanvas.height-30);
+    ctx.fillText("VALENTINE 2026❤️", reelCanvas.width/2, reelCanvas.height-30);
     
     reelCanvas.style.display = "block";
     reelCanvas.scrollIntoView({ behavior: 'smooth' });
